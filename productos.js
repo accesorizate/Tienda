@@ -5,7 +5,7 @@ const productos = [
         nombre: "Álbum fotográfico",
         categoria: "albumes",
         descripcion: "Álbum fotográfico personalizado para guardar tus mejores recuerdos.",
-        precio: 0,
+        precio: 19950,
         imagen: "",
         personalizable: true
     },
@@ -45,7 +45,7 @@ const productos = [
         nombre: "Cuadro personalizado 21 × 29 cm",
         categoria: "cuadros",
         descripcion: "Cuadro personalizado en formato 21 × 29 cm.",
-        precio: 0,
+        precio: 9990,
         imagen: "",
         personalizable: true
     },
@@ -65,7 +65,7 @@ const productos = [
         nombre: "Póster 21 × 29 cm",
         categoria: "posters",
         descripcion: "Póster personalizado en formato 21 × 29 cm.",
-        precio: 0,
+        precio: 1000,
         imagen: "",
         personalizable: true
     },
@@ -75,7 +75,7 @@ const productos = [
         nombre: "Póster 29 × 42 cm",
         categoria: "posters",
         descripcion: "Póster personalizado en formato 29 × 42 cm.",
-        precio: 0,
+        precio: 1500,
         imagen: "",
         personalizable: true
     },
