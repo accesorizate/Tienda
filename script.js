@@ -69,72 +69,340 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+// ==========================================
+// VENTANA DE DETALLES DEL PRODUCTO
+// ==========================================
 
-    // ==========================================
-    // AGREGAR AL CARRITO
-    // ==========================================
+document.addEventListener("click", function (evento) {
 
-    document.addEventListener("click", function (evento) {
+    if (!evento.target.classList.contains("view-product")) {
+        return;
+    }
 
-        if (!evento.target.classList.contains("add-to-cart")) {
-            return;
+    const idProducto = evento.target.dataset.id;
+
+    const producto = productos.find(function (p) {
+        return p.id === idProducto;
+    });
+
+    if (!producto) {
+        console.error("Producto no encontrado.");
+        return;
+    }
+
+    const ventana = document.createElement("div");
+
+    ventana.className = "product-modal";
+
+    ventana.innerHTML = `
+
+        <div class="product-modal-content">
+
+            <button class="close-product-modal">
+                ✕
+            </button>
+
+            <h2>
+                ${producto.nombre}
+            </h2>
+
+            <p>
+                ${producto.descripcion}
+            </p>
+
+            <div class="product-price">
+
+                ${
+                    producto.precio > 0
+                    ? "$" + producto.precio.toLocaleString("es-CL")
+                    : "Consultar precio"
+                }
+
+            </div>
+
+            <label>
+                Cantidad
+            </label>
+
+            <div class="quantity-selector">
+
+                <button
+                    class="modal-decrease">
+                    −
+                </button>
+
+                <span id="modal-quantity">
+                    1
+                </span>
+
+                <button
+                    class="modal-increase">
+                    +
+                </button>
+
+            </div>
+
+            <label>
+                Observaciones o personalización
+            </label>
+
+            <textarea
+                id="product-notes"
+                placeholder="Escribe aquí cualquier detalle que quieras agregar a tu pedido..."
+            ></textarea>
+
+            <button
+                class="modal-add-cart"
+                data-id="${producto.id}">
+
+                🛒 Agregar al carrito
+
+            </button>
+
+        </div>
+
+    `;
+
+    document.body.appendChild(ventana);
+
+});
+
+// ==========================================
+// FUNCIONES DE LA VENTANA DE PRODUCTO
+// ==========================================
+
+document.addEventListener("click", function (evento) {
+
+    // ------------------------------------------
+    // CERRAR VENTANA
+    // ------------------------------------------
+
+    if (
+        evento.target.classList.contains(
+            "close-product-modal"
+        )
+    ) {
+
+        const ventana =
+            document.querySelector(".product-modal");
+
+        if (ventana) {
+            ventana.remove();
         }
 
-        const idProducto = evento.target.dataset.id;
+        return;
+    }
 
-        const producto = productos.find(function (p) {
-            return p.id === idProducto;
-        });
+
+    // ------------------------------------------
+    // AUMENTAR CANTIDAD
+    // ------------------------------------------
+
+    if (
+        evento.target.classList.contains(
+            "modal-increase"
+        )
+    ) {
+
+        const cantidad =
+            document.getElementById(
+                "modal-quantity"
+            );
+
+        if (cantidad) {
+
+            let valor =
+                parseInt(cantidad.textContent);
+
+            valor++;
+
+            cantidad.textContent = valor;
+
+        }
+
+        return;
+    }
+
+
+    // ------------------------------------------
+    // DISMINUIR CANTIDAD
+    // ------------------------------------------
+
+    if (
+        evento.target.classList.contains(
+            "modal-decrease"
+        )
+    ) {
+
+        const cantidad =
+            document.getElementById(
+                "modal-quantity"
+            );
+
+        if (cantidad) {
+
+            let valor =
+                parseInt(cantidad.textContent);
+
+            if (valor > 1) {
+
+                valor--;
+
+                cantidad.textContent = valor;
+
+            }
+
+        }
+
+        return;
+    }
+
+
+    // ------------------------------------------
+    // AGREGAR PRODUCTO DESDE LA VENTANA
+    // ------------------------------------------
+
+    if (
+        evento.target.classList.contains(
+            "modal-add-cart"
+        )
+    ) {
+
+        const idProducto =
+            evento.target.dataset.id;
+
+
+        const producto =
+            productos.find(function (p) {
+
+                return p.id === idProducto;
+
+            });
+
 
         if (!producto) {
 
-            console.error("Producto no encontrado:", idProducto);
+            console.error(
+                "Producto no encontrado."
+            );
 
             return;
+
         }
 
 
-        const productoExistente = carrito.find(function (p) {
-            return p.id === idProducto;
-        });
+        const cantidadElemento =
+            document.getElementById(
+                "modal-quantity"
+            );
+
+
+        const notasElemento =
+            document.getElementById(
+                "product-notes"
+            );
+
+
+        const cantidad =
+            cantidadElemento
+            ? parseInt(
+                cantidadElemento.textContent
+            )
+            : 1;
+
+
+        const notas =
+            notasElemento
+            ? notasElemento.value.trim()
+            : "";
+
+
+        // --------------------------------------
+        // BUSCAR PRODUCTO EXISTENTE
+        // --------------------------------------
+
+        const productoExistente =
+            carrito.find(function (p) {
+
+                return p.id === idProducto;
+
+            });
 
 
         if (productoExistente) {
 
-            productoExistente.cantidad++;
+            productoExistente.cantidad +=
+                cantidad;
+
+
+            // Si escribió nuevas observaciones,
+            // las agregamos
+
+            if (notas) {
+
+                productoExistente.notas =
+                    productoExistente.notas
+                    ? productoExistente.notas +
+                      " | " +
+                      notas
+                    : notas;
+
+            }
 
         } else {
 
             carrito.push({
+
                 ...producto,
-                cantidad: 1
+
+                cantidad: cantidad,
+
+                notas: notas
+
             });
 
         }
 
+
+        // --------------------------------------
+        // GUARDAR Y ACTUALIZAR
+        // --------------------------------------
 
         guardarCarrito();
 
         actualizarCarrito();
 
 
-        // Cambiar temporalmente el texto del botón
+        // --------------------------------------
+        // CERRAR VENTANA
+        // --------------------------------------
 
-        const boton = evento.target;
-
-        const textoOriginal = boton.textContent;
-
-        boton.textContent = "✓ Agregado";
-
-        setTimeout(function () {
-
-            boton.textContent = textoOriginal;
-
-        }, 1200);
-
-    });
+        const ventana =
+            document.querySelector(
+                ".product-modal"
+            );
 
 
+        if (ventana) {
+
+            ventana.remove();
+
+        }
+
+
+        // --------------------------------------
+        // AVISO
+        // --------------------------------------
+
+        alert(
+            "Producto agregado al carrito ✓"
+        );
+
+    }
+
+});
+    
+   
     // ==========================================
     // ACTUALIZAR CARRITO
     // ==========================================
