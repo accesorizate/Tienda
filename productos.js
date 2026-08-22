@@ -15,7 +15,7 @@ const productos = [
         nombre: "Fotos Polaroid 5 × 8 cm",
         categoria: "fotografias",
         descripcion: "Fotos impresas en formato Polaroid de 5 × 8 cm.",
-        precio: 0,
+        precio: 100,
         imagen: "",
         personalizable: true
     },
@@ -25,7 +25,7 @@ const productos = [
         nombre: "Fotos Polaroid 5 × 8 cm laminadas",
         categoria: "fotografias",
         descripcion: "Fotos Polaroid de 5 × 8 cm con terminación laminada.",
-        precio: 0,
+        precio: 100,
         imagen: "",
         personalizable: true
     },
@@ -35,7 +35,7 @@ const productos = [
         nombre: "Fotos Polaroid 5 × 8 cm plastificadas e imantadas",
         categoria: "fotografias",
         descripcion: "Fotos Polaroid plastificadas e imantadas para colocar donde quieras.",
-        precio: 0,
+        precio: 100,
         imagen: "",
         personalizable: true
     },
@@ -55,7 +55,7 @@ const productos = [
         nombre: "Cuadro personalizado 33 × 48 cm",
         categoria: "cuadros",
         descripcion: "Cuadro personalizado en formato 33 × 48 cm.",
-        precio: 0,
+        precio: 100,
         imagen: "",
         personalizable: true
     },
@@ -85,7 +85,7 @@ const productos = [
         nombre: "Tarjetas de presentación 9 × 5,5 cm",
         categoria: "tarjetas",
         descripcion: "Tarjetas de presentación personalizadas de 9 × 5,5 cm.",
-        precio: 0,
+        precio: 100,
         imagen: "",
         personalizable: true
     },
@@ -95,7 +95,7 @@ const productos = [
         nombre: "Stickers personalizados",
         categoria: "stickers",
         descripcion: "Stickers personalizados disponibles en diferentes cantidades.",
-        precio: 0,
+        precio: 100,
         imagen: "",
         personalizable: true,
         cantidades: [10, 20, 30, 50, 100]
