@@ -773,7 +773,7 @@ document.addEventListener("click", function (evento) {
 if (producto.observacion) {
     mensaje +=
         "📝 Observación: " +
-        producto.notas +
+        producto.observacion +
         "\n";
 }
         
