@@ -38,30 +38,30 @@ document.addEventListener("DOMContentLoaded", function () {
             tarjeta.className = "category";
 
             tarjeta.innerHTML = `
-                
-                <div class="category-icon">
-                    📦
-                </div>
 
-                <h3>${producto.nombre}</h3>
+    <div class="category-icon">
+        📦
+    </div>
 
-                <p>${producto.descripcion}</p>
+    <h3>${producto.nombre}</h3>
 
-                <div class="product-price">
-                    ${
-                        producto.precio > 0
-                        ? "$" + producto.precio.toLocaleString("es-CL")
-                        : "Consultar precio"
-                    }
-                </div>
+    <p>${producto.descripcion}</p>
 
-                <button
-                    class="add-to-cart"
-                    data-id="${producto.id}">
-                    Agregar al carrito
-                </button>
+    <div class="product-price">
+        ${
+            producto.precio > 0
+            ? "$" + producto.precio.toLocaleString("es-CL")
+            : "Consultar precio"
+        }
+    </div>
 
-            `;
+    <button
+        class="view-product"
+        data-id="${producto.id}">
+        Ver detalles
+    </button>
+
+`;
 
             contenedor.appendChild(tarjeta);
 
