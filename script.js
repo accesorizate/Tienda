@@ -340,26 +340,26 @@ document.addEventListener("click", function (evento) {
 
             if (notas) {
 
-                productoExistente.notas =
-                    productoExistente.notas
-                    ? productoExistente.notas +
-                      " | " +
-                      notas
-                    : notas;
+    productoExistente.observacion =
+        productoExistente.observacion
+        ? productoExistente.observacion +
+          " | " +
+          notas
+        : notas;
 
-            }
+}
 
         } else {
 
             carrito.push({
 
-                ...producto,
+    ...producto,
 
-                cantidad: cantidad,
+    cantidad: cantidad,
 
-                notas: notas
+    observacion: notas
 
-            });
+});
 
         }
 
