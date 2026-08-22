@@ -443,7 +443,102 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+// ==========================================
+// FINALIZAR PEDIDO POR WHATSAPP
+// ==========================================
 
+document.addEventListener("click", function (evento) {
+
+    if (evento.target.id !== "checkout-button") {
+        return;
+    }
+
+    // Comprobar si el carrito está vacío
+
+    if (carrito.length === 0) {
+
+        alert("Tu carrito está vacío.");
+
+        return;
+    }
+
+
+    // Número de WhatsApp de AccesorizateSpA
+
+    const numeroWhatsApp = "56920635715";
+
+
+    // Crear mensaje
+
+    let mensaje =
+        "Hola, AccesorizateSpA 👋\n\n" +
+        "Quiero realizar el siguiente pedido:\n\n";
+
+
+    let total = 0;
+
+
+    carrito.forEach(function (producto) {
+
+        const precio =
+            Number(producto.precio) || 0;
+
+        const cantidad =
+            Number(producto.cantidad) || 1;
+
+        const subtotal =
+            precio * cantidad;
+
+
+        total += subtotal;
+
+
+        mensaje +=
+            "📦 " +
+            producto.nombre +
+            " × " +
+            cantidad +
+            " — $" +
+            subtotal.toLocaleString("es-CL") +
+            "\n";
+
+    });
+
+
+    mensaje +=
+        "\n💰 Total: $" +
+        total.toLocaleString("es-CL") +
+        "\n\n";
+
+
+    mensaje +=
+        "Quedo atento/a para confirmar mi pedido. 😊";
+
+
+    // Convertir el mensaje para utilizarlo en una URL
+
+    const mensajeCodificado =
+        encodeURIComponent(mensaje);
+
+
+    // Crear enlace de WhatsApp
+
+    const enlaceWhatsApp =
+        "https://wa.me/" +
+        numeroWhatsApp +
+        "?text=" +
+        mensajeCodificado;
+
+
+    // Abrir WhatsApp
+
+    window.open(
+        enlaceWhatsApp,
+        "_blank"
+    );
+
+});
+    
     // ==========================================
     // CARGAR CARRITO AL INICIAR
     // ==========================================
