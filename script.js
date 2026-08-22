@@ -770,6 +770,13 @@ document.addEventListener("click", function (evento) {
             subtotal.toLocaleString("es-CL") +
             "\n";
 
+if (producto.observacion) {
+    mensaje +=
+        "📝 Observación: " +
+        producto.observacion +
+        "\n";
+}
+        
     });
 
 
