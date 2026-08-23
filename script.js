@@ -165,6 +165,20 @@ ${producto.opciones?.tipoDiseno ? `
 ${producto.opciones?.textoPersonalizado ? `
 
     <label for="texto-personalizado">
+        ✏️ Texto personalizado
+    </label>
+
+    <input
+        type="text"
+        id="texto-personalizado"
+        placeholder="Escribe el texto que quieres incluir..."
+    >
+
+` : ""}
+
+${producto.opciones?.textoPersonalizado ? `
+
+    <label for="texto-personalizado">
         ✍️ Texto personalizado
     </label>
 
