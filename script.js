@@ -109,6 +109,86 @@ document.addEventListener("click", function (evento) {
             <p>
                 ${producto.descripcion}
             </p>
+${producto.opciones?.tipoDiseno ? `
+    
+    <label for="tipo-diseno">
+        🎨 Tipo de diseño
+    </label>
+
+    <select id="tipo-diseno">
+
+        <option value="">
+            Selecciona un diseño
+        </option>
+
+        <option value="Cumpleaños">
+            Cumpleaños
+        </option>
+
+        <option value="Aniversario">
+            Aniversario
+        </option>
+
+        <option value="Día de la madre">
+            Día de la madre
+        </option>
+
+        <option value="Día del padre">
+            Día del padre
+        </option>
+
+        <option value="Graduación">
+            Graduación
+        </option>
+
+        <option value="Nacimiento">
+            Nacimiento
+        </option>
+
+        <option value="Navidad">
+            Navidad
+        </option>
+
+        <option value="Spotify">
+            Spotify
+        </option>
+
+        <option value="Otro">
+            Otro
+        </option>
+
+    </select>
+
+` : ""}
+
+
+${producto.opciones?.textoPersonalizado ? `
+
+    <label for="texto-personalizado">
+        ✍️ Texto personalizado
+    </label>
+
+    <textarea
+        id="texto-personalizado"
+        placeholder="Escribe el texto que quieres incluir en tu diseño..."
+    ></textarea>
+
+` : ""}
+
+
+${producto.opciones?.observaciones ? `
+
+    <label for="product-notes">
+        📝 Observaciones
+    </label>
+
+    <textarea
+        id="product-notes"
+        placeholder="Indica cualquier detalle adicional..."
+    ></textarea>
+
+` : ""}
+
 
             <div class="product-price">
 
