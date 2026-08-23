@@ -388,7 +388,16 @@ document.addEventListener("click", function (evento) {
                 "product-notes"
             );
 
+        const tipoDisenoElemento =
+            document.getElementById(
+               "tipo-diseno"
+    );
 
+       const textoPersonalizadoElemento =
+           document.getElementById(
+              "texto-personalizado"
+    );
+        
         const cantidad =
             cantidadElemento
             ? parseInt(
@@ -401,6 +410,16 @@ document.addEventListener("click", function (evento) {
             notasElemento
             ? notasElemento.value.trim()
             : "";
+
+        const tipoDiseno =
+    tipoDisenoElemento
+    ? tipoDisenoElemento.value
+    : "";
+
+const textoPersonalizado =
+    textoPersonalizadoElemento
+    ? textoPersonalizadoElemento.value.trim()
+    : "";
 
 
         // --------------------------------------
