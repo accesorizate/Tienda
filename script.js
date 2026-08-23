@@ -879,11 +879,33 @@ document.addEventListener("click", function (evento) {
             subtotal.toLocaleString("es-CL") +
             "\n";
 
+if (producto.tipoDiseno) {
+
+    mensaje +=
+        "🎨 Diseño: " +
+        producto.tipoDiseno +
+        "\n";
+
+}
+
+
+if (producto.textoPersonalizado) {
+
+    mensaje +=
+        "✏️ Texto para el diseño: " +
+        producto.textoPersonalizado +
+        "\n";
+
+}
+
+
 if (producto.observacion) {
+
     mensaje +=
         "📝 Observación: " +
         producto.observacion +
         "\n";
+
 }
         
     });
