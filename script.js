@@ -222,14 +222,6 @@ ${producto.opciones?.observaciones ? `
 
             </div>
 
-            <label>
-                Observaciones o personalización
-            </label>
-
-            <textarea
-                id="product-notes"
-                placeholder="Escribe aquí cualquier detalle que quieras agregar a tu pedido..."
-            ></textarea>
 
             <button
                 class="modal-add-cart"
