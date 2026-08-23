@@ -47,7 +47,13 @@ const productos = [
         descripcion: "Cuadro personalizado en formato 21 × 29 cm.",
         precio: 9990,
         imagen: "",
-        personalizable: true
+        personalizable: true,
+
+opciones: {
+    tipoDiseno: true,
+    textoPersonalizado: true,
+    observaciones: true
+}
     },
 
     {
