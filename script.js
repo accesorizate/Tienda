@@ -456,13 +456,17 @@ const textoPersonalizado =
 
         } else {
 
-            carrito.push({
+carrito.push({
 
     ...producto,
 
     cantidad: cantidad,
 
-    observacion: notas
+    notas: notas,
+
+    tipoDiseno: tipoDiseno,
+
+    textoPersonalizado: textoPersonalizado
 
 });
 
