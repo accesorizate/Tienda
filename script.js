@@ -176,19 +176,6 @@ ${producto.opciones?.textoPersonalizado ? `
 
 ` : ""}
 
-${producto.opciones?.textoPersonalizado ? `
-
-    <label for="texto-personalizado">
-        ✍️ Texto personalizado
-    </label>
-
-    <textarea
-        id="texto-personalizado"
-        placeholder="Escribe el texto que quieres incluir en tu diseño..."
-    ></textarea>
-
-` : ""}
-
 
 ${producto.opciones?.observaciones ? `
 
