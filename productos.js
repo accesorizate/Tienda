@@ -64,8 +64,8 @@ opciones: {
         precio: 100,
         imagen: "",
         personalizable: true
-
-        opciones: {
+            
+opciones: {
     tipoDiseno: true,
     textoPersonalizado: true,
     observaciones: true
