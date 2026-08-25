@@ -434,44 +434,68 @@ const textoPersonalizado =
             });
 
 
-        if (productoExistente) {
+if (productoExistente) {
 
-            productoExistente.cantidad +=
-                cantidad;
+    productoExistente.cantidad += cantidad;
 
 
-            // Si escribió nuevas observaciones,
-            // las agregamos
+    // --------------------------------------
+    // ACTUALIZAR OBSERVACIÓN
+    // --------------------------------------
 
-            if (notas) {
+    if (notas) {
 
-    productoExistente.observacion =
-        productoExistente.observacion
-        ? productoExistente.observacion +
-          " | " +
-          notas
-        : notas;
+        productoExistente.observacion =
+            productoExistente.observacion
+            ? productoExistente.observacion +
+              " | " +
+              notas
+            : notas;
+
+    }
+
+
+    // --------------------------------------
+    // ACTUALIZAR TIPO DE DISEÑO
+    // --------------------------------------
+
+    if (tipoDiseno) {
+
+        productoExistente.tipoDiseno =
+            tipoDiseno;
+
+    }
+
+
+    // --------------------------------------
+    // ACTUALIZAR TEXTO PERSONALIZADO
+    // --------------------------------------
+
+    if (textoPersonalizado) {
+
+        productoExistente.textoPersonalizado =
+            textoPersonalizado;
+
+    }
+
+
+} else {
+
+    carrito.push({
+
+        ...producto,
+
+        cantidad: cantidad,
+
+        observacion: notas,
+
+        tipoDiseno: tipoDiseno,
+
+        textoPersonalizado: textoPersonalizado
+
+    });
 
 }
-
-        } else {
-
-carrito.push({
-
-    ...producto,
-
-    cantidad: cantidad,
-
-    notas: notas,
-
-    tipoDiseno: tipoDiseno,
-
-    textoPersonalizado: textoPersonalizado
-
-});
-
-        }
-
 
         // --------------------------------------
         // GUARDAR Y ACTUALIZAR
