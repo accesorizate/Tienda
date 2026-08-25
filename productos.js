@@ -63,7 +63,7 @@ opciones: {
         descripcion: "Cuadro personalizado en formato 33 × 48 cm.",
         precio: 100,
         imagen: "",
-        personalizable: true
+        personalizable: true,
             
 opciones: {
     tipoDiseno: true,
