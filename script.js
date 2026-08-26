@@ -392,7 +392,143 @@ document.addEventListener("click", function (evento) {
         return;
     }
 
+// ------------------------------------------
+// OPCIONES DINÁMICAS DE POLAROID
+// ------------------------------------------
 
+const selectorAcabado =
+    document.getElementById("producto-acabado");
+
+const selectorPack =
+    document.getElementById("producto-pack");
+
+const precioOpcion =
+    document.getElementById("precio-opcion");
+
+
+if (
+    selectorAcabado &&
+    selectorPack &&
+    producto.opciones?.acabados
+) {
+
+    selectorAcabado.addEventListener(
+        "change",
+        function () {
+
+            const acabado =
+                selectorAcabado.value;
+
+            selectorPack.innerHTML = "";
+
+            if (!acabado) {
+
+                selectorPack.disabled = true;
+
+                selectorPack.innerHTML = `
+                    <option value="">
+                        Primero selecciona un acabado
+                    </option>
+                `;
+
+                if (precioOpcion) {
+                    precioOpcion.textContent =
+                        "💰 Selecciona un pack";
+                }
+
+                return;
+            }
+
+
+            selectorPack.disabled = false;
+
+
+            const packs =
+                producto.opciones.acabados[acabado];
+
+
+            packs.forEach(function (pack) {
+
+                const opcion =
+                    document.createElement("option");
+
+                opcion.value =
+                    pack.cantidad;
+
+                opcion.textContent =
+                    pack.cantidad +
+                    " unidades — $" +
+                    pack.precio.toLocaleString("es-CL");
+
+                opcion.dataset.precio =
+                    pack.precio;
+
+                selectorPack.appendChild(
+                    opcion
+                );
+
+            });
+
+
+            actualizarPrecioPolaroid();
+
+        }
+    );
+
+
+    selectorPack.addEventListener(
+        "change",
+        function () {
+
+            actualizarPrecioPolaroid();
+
+        }
+    );
+
+}
+
+
+function actualizarPrecioPolaroid() {
+
+    if (
+        !selectorPack ||
+        !precioOpcion
+    ) {
+        return;
+    }
+
+
+    const opcionSeleccionada =
+        selectorPack.options[
+            selectorPack.selectedIndex
+        ];
+
+
+    if (
+        !opcionSeleccionada ||
+        !opcionSeleccionada.dataset.precio
+    ) {
+
+        precioOpcion.textContent =
+            "💰 Selecciona un pack";
+
+        return;
+
+    }
+
+
+    const precio =
+        Number(
+            opcionSeleccionada.dataset.precio
+        );
+
+
+    precioOpcion.textContent =
+        "💰 $" +
+        precio.toLocaleString("es-CL");
+
+}
+    
     // ------------------------------------------
     // AGREGAR PRODUCTO DESDE LA VENTANA
     // ------------------------------------------
