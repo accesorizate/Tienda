@@ -392,103 +392,36 @@ document.addEventListener("click", function (evento) {
         return;
     }
 
-// ------------------------------------------
+// ==========================================
 // OPCIONES DINÁMICAS DE POLAROID
-// ------------------------------------------
+// ==========================================
 
-const selectorAcabado =
-    document.getElementById("producto-acabado");
+document.addEventListener("change", function (evento) {
 
-const selectorPack =
-    document.getElementById("producto-pack");
+    // --------------------------------------
+    // CAMBIO DE ACABADO
+    // --------------------------------------
 
-const precioOpcion =
-    document.getElementById("precio-opcion");
-
-
-if (
-    selectorAcabado &&
-    selectorPack &&
-    producto.opciones?.acabados
-) {
-
-    selectorAcabado.addEventListener(
-        "change",
-        function () {
-
-            const acabado =
-                selectorAcabado.value;
-
-            selectorPack.innerHTML = "";
-
-            if (!acabado) {
-
-                selectorPack.disabled = true;
-
-                selectorPack.innerHTML = `
-                    <option value="">
-                        Primero selecciona un acabado
-                    </option>
-                `;
-
-                if (precioOpcion) {
-                    precioOpcion.textContent =
-                        "💰 Selecciona un pack";
-                }
-
-                return;
-            }
+    if (
+        evento.target.id !== "producto-acabado"
+    ) {
+        return;
+    }
 
 
-            selectorPack.disabled = false;
+    const selectorAcabado =
+        evento.target;
 
+    const selectorPack =
+        document.getElementById(
+            "producto-pack"
+        );
 
-            const packs =
-                producto.opciones.acabados[acabado];
+    const precioOpcion =
+        document.getElementById(
+            "precio-opcion"
+        );
 
-
-            packs.forEach(function (pack) {
-
-                const opcion =
-                    document.createElement("option");
-
-                opcion.value =
-                    pack.cantidad;
-
-                opcion.textContent =
-                    pack.cantidad +
-                    " unidades — $" +
-                    pack.precio.toLocaleString("es-CL");
-
-                opcion.dataset.precio =
-                    pack.precio;
-
-                selectorPack.appendChild(
-                    opcion
-                );
-
-            });
-
-
-            actualizarPrecioPolaroid();
-
-        }
-    );
-
-
-    selectorPack.addEventListener(
-        "change",
-        function () {
-
-            actualizarPrecioPolaroid();
-
-        }
-    );
-
-}
-
-
-function actualizarPrecioPolaroid() {
 
     if (
         !selectorPack ||
@@ -498,36 +431,196 @@ function actualizarPrecioPolaroid() {
     }
 
 
-    const opcionSeleccionada =
+    const acabado =
+        selectorAcabado.value;
+
+
+    // --------------------------------------
+    // LIMPIAR PACK
+    // --------------------------------------
+
+    selectorPack.innerHTML = "";
+
+
+    // --------------------------------------
+    // SI NO HAY ACABADO
+    // --------------------------------------
+
+    if (!acabado) {
+
+        selectorPack.disabled = true;
+
+        selectorPack.innerHTML = `
+            <option value="">
+                Primero selecciona un acabado
+            </option>
+        `;
+
+        precioOpcion.textContent =
+            "💰 Selecciona un pack";
+
+        return;
+    }
+
+
+    // --------------------------------------
+    // OBTENER PRODUCTO ACTUAL
+    // --------------------------------------
+
+    const ventana =
+        selectorAcabado.closest(
+            ".product-modal"
+        );
+
+
+    if (!ventana) {
+        return;
+    }
+
+
+    const idProducto =
+        ventana.querySelector(
+            ".modal-add-cart"
+        )?.dataset.id;
+
+
+    const producto =
+        productos.find(function (p) {
+
+            return p.id === idProducto;
+
+        });
+
+
+    if (
+        !producto ||
+        !producto.opciones ||
+        !producto.opciones.acabados
+    ) {
+        return;
+    }
+
+
+    // --------------------------------------
+    // OBTENER PACKS
+    // --------------------------------------
+
+    const packs =
+        producto.opciones.acabados[
+            acabado
+        ];
+
+
+    if (!packs) {
+        return;
+    }
+
+
+    selectorPack.disabled = false;
+
+
+    // --------------------------------------
+    // AGREGAR PACKS
+    // --------------------------------------
+
+    selectorPack.innerHTML = `
+        <option value="">
+            Selecciona un pack
+        </option>
+    `;
+
+
+    packs.forEach(function (pack) {
+
+        const opcion =
+            document.createElement(
+                "option"
+            );
+
+        opcion.value =
+            pack.cantidad;
+
+        opcion.textContent =
+            pack.cantidad +
+            " unidades — $" +
+            pack.precio.toLocaleString(
+                "es-CL"
+            );
+
+        opcion.dataset.precio =
+            pack.precio;
+
+        selectorPack.appendChild(
+            opcion
+        );
+
+    });
+
+
+    precioOpcion.textContent =
+        "💰 Selecciona un pack";
+
+});
+
+
+// ==========================================
+// CAMBIO DE PACK
+// ==========================================
+
+document.addEventListener("change", function (evento) {
+
+    if (
+        evento.target.id !== "producto-pack"
+    ) {
+        return;
+    }
+
+
+    const selectorPack =
+        evento.target;
+
+    const precioOpcion =
+        document.getElementById(
+            "precio-opcion"
+        );
+
+
+    if (!precioOpcion) {
+        return;
+    }
+
+
+    const opcion =
         selectorPack.options[
             selectorPack.selectedIndex
         ];
 
 
     if (
-        !opcionSeleccionada ||
-        !opcionSeleccionada.dataset.precio
+        !opcion ||
+        !opcion.dataset.precio
     ) {
 
         precioOpcion.textContent =
             "💰 Selecciona un pack";
 
         return;
-
     }
 
 
     const precio =
         Number(
-            opcionSeleccionada.dataset.precio
+            opcion.dataset.precio
         );
 
 
     precioOpcion.textContent =
         "💰 $" +
-        precio.toLocaleString("es-CL");
+        precio.toLocaleString(
+            "es-CL"
+        );
 
-}
+});
     
     // ------------------------------------------
     // AGREGAR PRODUCTO DESDE LA VENTANA
