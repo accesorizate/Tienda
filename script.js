@@ -253,15 +253,15 @@ ${producto.opciones?.observaciones ? `
 ` : ""}
 
 
-            <div class="product-price">
+           <div class="product-price" id="modal-product-price">
 
-                ${
-                    producto.precio > 0
-                    ? "$" + producto.precio.toLocaleString("es-CL")
-                    : "Consultar precio"
-                }
+    ${
+        producto.precio > 0
+        ? "$" + producto.precio.toLocaleString("es-CL")
+        : "Selecciona un pack"
+    }
 
-            </div>
+</div>
 
             <label>
                 Cantidad
