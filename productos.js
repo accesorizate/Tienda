@@ -10,35 +10,76 @@ const productos = [
         personalizable: true
     },
 
-    {
-        id: "polaroid-5x8",
-        nombre: "Fotos Polaroid 5 × 8 cm",
-        categoria: "fotografias",
-        descripcion: "Fotos impresas en formato Polaroid de 5 × 8 cm.",
-        precio: 100,
-        imagen: "",
-        personalizable: true
-    },
+ {
+    id: "foto-polaroid",
+    nombre: "Foto Polaroid",
+    categoria: "fotografias",
+    descripcion: "Fotos Polaroid personalizadas.",
+    precio: 1990,
+    imagen: "",
+    personalizable: true,
 
-    {
-        id: "polaroid-laminada",
-        nombre: "Fotos Polaroid 5 × 8 cm laminadas",
-        categoria: "fotografias",
-        descripcion: "Fotos Polaroid de 5 × 8 cm con terminación laminada.",
-        precio: 100,
-        imagen: "",
-        personalizable: true
-    },
+    opciones: {
+        medidas: [
+            "5 × 8 cm"
+        ],
 
-    {
-        id: "polaroid-imantada",
-        nombre: "Fotos Polaroid 5 × 8 cm plastificadas e imantadas",
-        categoria: "fotografias",
-        descripcion: "Fotos Polaroid plastificadas e imantadas para colocar donde quieras.",
-        precio: 100,
-        imagen: "",
-        personalizable: true
-    },
+        acabados: {
+
+            "Normal": [
+                {
+                    cantidad: 10,
+                    precio: 1990
+                },
+                {
+                    cantidad: 35,
+                    precio: 5990
+                },
+                {
+                    cantidad: 50,
+                    precio: 7990
+                },
+                {
+                    cantidad: 100,
+                    precio: 11990
+                }
+            ],
+
+            "Laminada": [
+                {
+                    cantidad: 25,
+                    precio: 5990
+                },
+                {
+                    cantidad: 50,
+                    precio: 9990
+                },
+                {
+                    cantidad: 100,
+                    precio: 16950
+                }
+            ],
+
+            "Plastificada + imantada": [
+                {
+                    cantidad: 20,
+                    precio: 6990
+                },
+                {
+                    cantidad: 60,
+                    precio: 19800
+                },
+                {
+                    cantidad: 100,
+                    precio: 26990
+                }
+            ]
+
+        },
+
+        observaciones: true
+    }
+},
 
     {
         id: "cuadro-21x29",
