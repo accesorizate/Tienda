@@ -47,13 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <p>${producto.descripcion}</p>
 
-    <div class="product-price">
-        ${
-            producto.precio > 0
-            ? "$" + producto.precio.toLocaleString("es-CL")
-            : "Consultar precio"
-        }
-    </div>
+    <div class="product-price" id="modal-product-price">
+
+    ${
+        producto.precio > 0
+        ? "$" + producto.precio.toLocaleString("es-CL")
+        : "Selecciona un pack"
+    }
+
+</div>
 
     <button
         class="view-product"
