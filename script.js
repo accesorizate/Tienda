@@ -629,7 +629,57 @@ document.addEventListener("change", function (evento) {
 
 });
 
+// ==========================================
+// CAMBIAR PRECIO AL SELECCIONAR PACK
+// ==========================================
 
+selectorPack.addEventListener("change", function () {
+
+    const opcionSeleccionada =
+        selectorPack.options[
+            selectorPack.selectedIndex
+        ];
+
+    const precio =
+        opcionSeleccionada
+        ? Number(opcionSeleccionada.dataset.precio)
+        : 0;
+
+
+    const precioProducto =
+        ventana.querySelector(
+            "#modal-product-price"
+        );
+
+
+    if (precio > 0) {
+
+        // Actualizar precio del pack
+
+        precioOpcion.textContent =
+            "💰 $" +
+            precio.toLocaleString("es-CL");
+
+
+        // Actualizar precio grande
+
+        if (precioProducto) {
+
+            precioProducto.textContent =
+                "$" +
+                precio.toLocaleString("es-CL");
+
+        }
+
+    } else {
+
+        precioOpcion.textContent =
+            "💰 Selecciona un pack";
+
+    }
+
+});
+    
 // ==========================================
 // CAMBIO DE PACK
 // ==========================================
