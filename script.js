@@ -818,7 +818,41 @@ const textoPersonalizado =
     ? textoPersonalizadoElemento.value.trim()
     : "";
 
+// --------------------------------------
+// DATOS DEL PACK SELECCIONADO
+// --------------------------------------
 
+const selectorPackActual =
+    document.getElementById(
+        "producto-pack"
+    );
+
+
+const opcionPack =
+    selectorPackActual
+    ? selectorPackActual.options[
+        selectorPackActual.selectedIndex
+    ]
+    : null;
+
+
+const cantidadPack =
+    opcionPack && opcionPack.value
+    ? Number(opcionPack.value)
+    : 0;
+
+
+const precioPack =
+    opcionPack && opcionPack.dataset.precio
+    ? Number(opcionPack.dataset.precio)
+    : producto.precio;
+
+
+const nombrePack =
+    opcionPack && opcionPack.value
+    ? opcionPack.textContent.trim()
+    : "";
+        
         // --------------------------------------
         // BUSCAR PRODUCTO EXISTENTE
         // --------------------------------------
