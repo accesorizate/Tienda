@@ -914,17 +914,29 @@ if (productoExistente) {
 
     carrito.push({
 
-        ...producto,
+    ...producto,
 
-        cantidad: cantidad,
+    cantidad: cantidad,
 
-        observacion: notas,
+    precio:
+        cantidadPack > 0
+        ? precioPack
+        : producto.precio,
 
-        tipoDiseno: tipoDiseno,
+    packCantidad:
+        cantidadPack,
 
-        textoPersonalizado: textoPersonalizado
+    pack:
+        nombrePack,
 
-    });
+    notas: notas,
+
+    tipoDiseno: tipoDiseno,
+
+    textoPersonalizado:
+        textoPersonalizado
+
+});
 
 }
 
