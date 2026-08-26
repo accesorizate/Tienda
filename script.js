@@ -868,17 +868,6 @@ if (productoExistente) {
 
     cantidad: cantidad,
 
-    precio:
-        cantidadPack > 0
-        ? precioPack
-        : producto.precio,
-
-    packCantidad:
-        cantidadPack,
-
-    pack:
-        nombrePack,
-
     notas: notas,
 
     tipoDiseno: tipoDiseno,
