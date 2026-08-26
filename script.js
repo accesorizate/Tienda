@@ -161,6 +161,68 @@ ${producto.opciones?.tipoDiseno ? `
 
 ` : ""}
 
+${producto.opciones?.medidas ? `
+
+    <label for="producto-medida">
+        📐 Medida
+    </label>
+
+    <select id="producto-medida">
+
+        ${producto.opciones.medidas.map(function (medida) {
+            return `
+                <option value="${medida}">
+                    ${medida}
+                </option>
+            `;
+        }).join("")}
+
+    </select>
+
+` : ""}
+
+
+${producto.opciones?.acabados ? `
+
+    <label for="producto-acabado">
+        ✨ Acabado
+    </label>
+
+    <select id="producto-acabado">
+
+        <option value="">
+            Selecciona un acabado
+        </option>
+
+        ${Object.keys(producto.opciones.acabados).map(function (acabado) {
+            return `
+                <option value="${acabado}">
+                    ${acabado}
+                </option>
+            `;
+        }).join("")}
+
+    </select>
+
+
+    <label for="producto-pack">
+        📦 Pack
+    </label>
+
+    <select id="producto-pack" disabled>
+
+        <option value="">
+            Primero selecciona un acabado
+        </option>
+
+    </select>
+
+
+    <div id="precio-opcion">
+        💰 Selecciona un pack
+    </div>
+
+` : ""}
 
 ${producto.opciones?.textoPersonalizado ? `
 
